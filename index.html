@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trần Đăng Khoa — CodeWithKhoa</title>
-  <meta name="description" content="Automation Engineer • VTechOn • ESP32 • Robotics • Audio & Voice Assistant R&D" />
+  <meta name="description" content="Automation Engineer • IoT • Robotics • Audio/AI • Web Development" />
   <meta property="og:title" content="Trần Đăng Khoa — CodeWithKhoa" />
-  <meta property="og:description" content="Automation Engineer • VTechOn • ESP32 • Robotics • Audio & Voice Assistant R&D" />
+  <meta property="og:description" content="Automation Engineer • IoT • Robotics • Audio/AI • Web Development" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://codewithkhoa.github.io/" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/116957307?s=400" />
   <link rel="icon" href="https://avatars.githubusercontent.com/u/116957307?s=64" />
-  <!-- Tailwind Play CDN (works on GitHub Pages without build step) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -22,270 +21,235 @@
               50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',
               500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63'
             }
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(34,211,238,.25), 0 10px 25px rgba(2,132,199,.25)'
+          },
+          keyframes: {
+            gradient: {
+              '0%,100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' }
+            }
+          },
+          animation: {
+            gradient: 'gradient 12s ease infinite'
           }
         }
       }
     }
   </script>
   <style>
-    /* Light/Dark via prefers-color-scheme with manual toggle override */
     :root { color-scheme: light dark; }
     html[data-theme="dark"] { color-scheme: dark; }
     html[data-theme="light"] { color-scheme: light; }
   </style>
 </head>
 <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-brand-300/60">
-  <!-- Nav -->
+  <!-- NAV -->
   <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
-        <img class="w-9 h-9 rounded-full ring-2 ring-brand-500/30" src="https://avatars.githubusercontent.com/u/116957307?s=80" alt="CodeWithKhoa avatar"/>
+        <img class="w-9 h-9 rounded-full ring-2 ring-brand-500/30" src="/assets/avt.png" onerror="this.src='https://avatars.githubusercontent.com/u/116957307?s=80'" alt="CodeWithKhoa avatar"/>
         <div class="leading-tight">
           <div class="font-semibold">CodeWithKhoa</div>
           <div class="text-xs text-slate-500 dark:text-slate-400">Automation Engineer</div>
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#projects" class="hover:text-brand-500" data-i18n="nav.projects">Dự án</a>
-        <a href="#about" class="hover:text-brand-500" data-i18n="nav.about">Giới thiệu</a>
-        <a href="#contact" class="hover:text-brand-500" data-i18n="nav.contact">Liên hệ</a>
+        <a href="#projects" class="hover:text-brand-500">Dự án</a>
+        <a href="#stats" class="hover:text-brand-500">Thống kê</a>
+        <a href="#skills" class="hover:text-brand-500">Kỹ năng</a>
+        <a href="#about" class="hover:text-brand-500">Giới thiệu</a>
+        <a href="#contact" class="hover:text-brand-500">Liên hệ</a>
       </nav>
       <div class="flex items-center gap-2">
-        <button id="langToggle" class="text-xs px-2 py-1 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" title="VI/EN">VI</button>
-        <button id="themeToggle" class="text-xs px-2 py-1 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" title="Theme">☾</button>
+        <button id="langToggle" class="text-xs px-2 py-1 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">VI</button>
+        <button id="themeToggle" class="text-xs px-2 py-1 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">☾</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-500/10 via-transparent to-transparent pointer-events-none"></div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-400 via-indigo-400 to-fuchsia-400 bg-[length:200%_200%] animate-gradient opacity-20 dark:opacity-25"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-12 gap-10 items-center relative">
+      <div class="lg:col-span-7">
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
-          <span data-i18n="hero.title1">Xin chào, mình là</span>
-          <span class="text-brand-600 dark:text-brand-400"> Trần Đăng Khoa</span>
+          Xin chào, mình là <span class="text-brand-600 dark:text-brand-400">Trần Đăng Khoa</span>
         </h1>
-        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300" data-i18n="hero.subtitle">
-          Nghiên cứu ESP32, Robot, Audio/Voice Assistant; xây hệ sinh thái VTechOn (hardware + software).
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">
+          Mình là một Automation Engineer, nghiên cứu nhiều lĩnh vực: ESP32, STM32, Arduino, Robotics, Audio/Voice Assistant, Xử lý ảnh AI, Lập trình Web (PHP/JS), CAD/PCB (Inventor, Altium). Bên cạnh đó còn tham gia các dự án mở rộng về hệ thống nhúng, tích hợp phần mềm, và giải pháp tự động hóa công nghiệp. <br>
+          <strong>VTechOn</strong> chỉ là một trong nhiều dự án tiêu biểu mình phát triển, bên cạnh nhiều hướng nghiên cứu khác.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a class="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow" href="#projects" data-i18n="cta.viewProjects">Xem dự án</a>
-          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://codewithkhoa.com" target="_blank" rel="noopener" data-i18n="cta.website">Website VTechOn</a>
-          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://github.com/CodeWithKhoa" target="_blank" rel="noopener">GitHub</a>
-          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://www.youtube.com/@CodeWithKhoa" target="_blank" rel="noopener">YouTube</a>
+          <a class="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-glow" href="#projects">Xem dự án</a>
+          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://codewithkhoa.com" target="_blank">Website cá nhân</a>
+          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://github.com/CodeWithKhoa" target="_blank">GitHub</a>
+          <a class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800" href="https://www.youtube.com/@CodeWithKhoa" target="_blank">YouTube</a>
         </div>
       </div>
-      <div class="relative">
-        <div class="aspect-[4/3] rounded-2xl border bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-1 shadow-inner">
-          <div class="w-full h-full rounded-xl grid place-items-center">
-            <div class="text-center">
-              <div class="text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400">Featured</div>
-              <div class="mt-3 grid grid-cols-2 gap-3">
-                <!-- Pin cards (images come from github-readme-stats) -->
-                <a href="https://github.com/CodeWithKhoa/FaceAutoVN" target="_blank" rel="noopener">
-                  <img class="rounded-xl shadow" alt="FaceAutoVN" src="https://github-readme-stats.vercel.app/api/pin/?username=codewithkhoa&repo=FaceAutoVN&theme=default"/>
-                </a>
-                <a href="https://github.com/CodeWithKhoa/Robot_Controller" target="_blank" rel="noopener">
-                  <img class="rounded-xl shadow" alt="Robot_Controller" src="https://github-readme-stats.vercel.app/api/pin/?username=codewithkhoa&repo=Robot_Controller&theme=default"/>
-                </a>
-                <a href="https://github.com/CodeWithKhoa/Loa_Assistant_ESP32" target="_blank" rel="noopener">
-                  <img class="rounded-xl shadow" alt="Loa_Assistant_ESP32" src="https://github-readme-stats.vercel.app/api/pin/?username=codewithkhoa&repo=Loa_Assistant_ESP32&theme=default"/>
-                </a>
-                <a href="https://github.com/CodeWithKhoa/PHP-BACKUP-TOOL" target="_blank" rel="noopener">
-                  <img class="rounded-xl shadow" alt="PHP-BACKUP-TOOL" src="https://github-readme-stats.vercel.app/api/pin/?username=codewithkhoa&repo=PHP-BACKUP-TOOL&theme=default"/>
-                </a>
-              </div>
+      <div class="lg:col-span-5">
+        <div class="relative rounded-3xl border shadow-xl bg-white/70 dark:bg-slate-900/50 backdrop-blur p-6">
+          <div class="flex items-center gap-4">
+            <img class="w-20 h-20 rounded-full ring-2 ring-brand-500/40" src="/assets/avt.png" onerror="this.src='https://avatars.githubusercontent.com/u/116957307?s=160'" alt="Avatar"/>
+            <div>
+              <div class="font-semibold text-xl">Tran Dang Khoa</div>
+              <div class="text-sm text-slate-500 dark:text-slate-400">Automation • Robotics • IoT</div>
             </div>
           </div>
+          <div class="mt-4 grid grid-cols-3 md:grid-cols-6 gap-3 text-center text-sm">
+            <div class="rounded-xl border p-3"><div class="font-bold">ESP32</div><div class="text-slate-500">Audio/AI</div></div>
+            <div class="rounded-xl border p-3"><div class="font-bold">STM32</div><div class="text-slate-500">HAL / LL</div></div>
+            <div class="rounded-xl border p-3"><div class="font-bold">Arduino</div><div class="text-slate-500">Prototyping</div></div>
+            <div class="rounded-xl border p-3"><div class="font-bold">Altium</div><div class="text-slate-500">PCB</div></div>
+            <div class="rounded-xl border p-3"><div class="font-bold">Inventor</div><div class="text-slate-500">3D CAD</div></div>
+            <div class="rounded-xl border p-3"><div class="font-bold">Web</div><div class="text-slate-500">PHP / JS</div></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
-    <h2 class="text-2xl sm:text-3xl font-bold" data-i18n="projects.title">Dự án nổi bật</h2>
-    <p class="mt-2 text-slate-600 dark:text-slate-300" data-i18n="projects.note">Một vài repo tiêu biểu trong hệ sinh thái VTechOn.</p>
-
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold">Dự án tiêu biểu</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-300">Một số dự án trong và ngoài VTechOn.</p>
     <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card template x3 -->
       <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/Loa_Assistant_ESP32" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">Loa Assistant ESP32</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wake word + VAD + Deepgram STT + TTS, I2S mic &amp; MAX98357A/PCM5102.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">ESP32</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Audio</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">AI</li>
-            </ul>
-          </div>
+        <a href="https://github.com/CodeWithKhoa/Loa_Assistant_ESP32" target="_blank" class="block p-5">
+          <h3 class="font-semibold text-lg">Loa Assistant ESP32</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wake word + VAD + STT/TTS, I2S mic & MAX98357A.</p>
         </a>
       </article>
-
       <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/Robot_Controller" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">Robot Controller</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Remote điều khiển robot + LCD, firmware/hardware/report tách nhánh.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">STM32/AVR</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Robotics</li>
-            </ul>
-          </div>
+        <a href="https://github.com/CodeWithKhoa/Robot_Controller" target="_blank" class="block p-5">
+          <h3 class="font-semibold text-lg">Robot Controller</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Điều khiển robot với LCD, firmware + hardware.</p>
         </a>
       </article>
-
       <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/PHP-BACKUP-TOOL" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">PHP Backup Tool</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Tự động nén &amp; backup PHP/WordPress, cron friendly.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">PHP</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">DevOps</li>
-            </ul>
-          </div>
+        <a href="https://github.com/CodeWithKhoa/PHP-BACKUP-TOOL" target="_blank" class="block p-5">
+          <h3 class="font-semibold text-lg">PHP Backup Tool</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Tự động nén & backup code PHP/WordPress.</p>
         </a>
       </article>
-
       <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/FaceAutoVN" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">FaceAutoVN</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Điểm danh học sinh bằng FaceID, Python + OpenCV.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Python</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">OpenCV</li>
-            </ul>
-          </div>
-        </a>
-      </article>
-
-      <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/Altium_Library" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">Altium Library</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Thư viện footprint/3D linh kiện do Khoa tự build.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Altium</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">PCB</li>
-            </ul>
-          </div>
-        </a>
-      </article>
-
-      <article class="group rounded-2xl border hover:shadow-lg transition overflow-hidden">
-        <a href="https://github.com/CodeWithKhoa/Loa-Assistant-HW" target="_blank" rel="noopener" class="block">
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">Loa Assistant Hardware</h3>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">PCB, BOM, sơ đồ mạch cho loa trợ lý.</p>
-            <ul class="mt-3 text-xs text-slate-500 flex flex-wrap gap-2">
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">ESP32</li>
-              <li class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Hardware</li>
-            </ul>
-          </div>
+        <a href="https://github.com/CodeWithKhoa/FaceAutoVN" target="_blank" class="block p-5">
+          <h3 class="font-semibold text-lg">FaceAutoVN</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Điểm danh học sinh bằng FaceID (Python + OpenCV).</p>
         </a>
       </article>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
-    <h2 class="text-2xl sm:text-3xl font-bold" data-i18n="about.title">Về mình</h2>
-    <div class="mt-4 grid lg:grid-cols-3 gap-8 items-start">
-      <div class="lg:col-span-2 text-slate-700 dark:text-slate-300 leading-relaxed" data-i18n="about.body">
-        Mình là Khoa, Automation Engineer — thích chế tạo thiết bị thông minh (IoT), xử lý âm thanh, robot, và hệ thống AI lai offline/online. 
-        Toàn bộ dự án gom lại dưới thương hiệu <strong>VTechOn</strong> (hardware + software), tích hợp GitHub/WordPress/YouTube.
-      </div>
-      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-        <li>⚙️ ESP32, STM32, AVR</li>
-        <li>🎛️ Audio DSP, I2S, TTS/STT</li>
-        <li>📡 Bluetooth A2DP, Wi‑Fi</li>
-        <li>🧠 Python, PHP, JS</li>
-        <li>📐 Inventor, Altium</li>
-      </ul>
-    </div>
+  <!-- ABOUT -->
+  <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold">Giới thiệu</h2>
+    <p class="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+      Mình là Khoa, một Automation Engineer đam mê chế tạo thiết bị thông minh, xử lý âm thanh, robot, lập trình web, và nghiên cứu AI. Ngoài dự án VTechOn, mình còn xây dựng nhiều repo nhỏ và thử nghiệm công nghệ để phục vụ học tập và R&D.
+    </p>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
-    <h2 class="text-2xl sm:text-3xl font-bold" data-i18n="contact.title">Liên hệ</h2>
-    <div class="mt-4 grid sm:grid-cols-2 gap-6">
-      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="mailto:codewithkhoa@gmail.com">📧 codewithkhoa@gmail.com</a>
-      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://t.me/CodeWithKhoa" target="_blank" rel="noopener">💬 Telegram</a>
-      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://github.com/CodeWithKhoa" target="_blank" rel="noopener">🐙 GitHub</a>
-      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://www.youtube.com/@CodeWithKhoa" target="_blank" rel="noopener">▶️ YouTube</a>
+  <!-- CONTACT -->
+  <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold">Liên hệ</h2>
+    <div class="mt-6 grid sm:grid-cols-2 gap-6">
+      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="mailto:trandangkhoa31122006@gmail.com">📧 trandangkhoa31122006@gmail.com</a>
+      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://t.me/CodeWithKhoa" target="_blank">💬 Telegram</a>
+      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://github.com/CodeWithKhoa" target="_blank">🐙 GitHub</a>
+      <a class="rounded-2xl border p-5 hover:shadow-lg transition" href="https://www.youtube.com/@CodeWithKhoa" target="_blank">▶️ YouTube</a>
     </div>
   </section>
 
   <footer class="border-t border-slate-200 dark:border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>© <span id="year"></span> Trần Đăng Khoa — VTechOn</div>
-      <div class="text-slate-500">
-        <span data-i18n="footer.note">Made with GitHub Pages • Auto light/dark • VI/EN</span>
-      </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 text-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>© <span id="year"></span> Trần Đăng Khoa</div>
+      <div class="text-slate-500">Made with GitHub Pages • Auto light/dark</div>
     </div>
   </footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // Hiển thị năm
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // THEME TOGGLE (system/light/dark)
-    const themeBtn = document.getElementById('themeToggle');
-    function applyTheme(mode){
-      const html = document.documentElement;
-      if(mode === 'system'){
-        html.setAttribute('data-theme', matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } else {
-        html.setAttribute('data-theme', mode);
-      }
-      localStorage.setItem('theme-mode', mode);
-      themeBtn.textContent = html.getAttribute('data-theme') === 'dark' ? '☀' : '☾';
+  // =====================
+  // THEME TOGGLE
+  // =====================
+  const themeBtn = document.getElementById('themeToggle');
+
+  function applyTheme(mode) {
+    const html = document.documentElement;
+    let theme = mode;
+
+    if (mode === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    const savedTheme = localStorage.getItem('theme-mode') || 'system';
-    applyTheme(savedTheme);
-    themeBtn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme-mode') || 'system';
-      const next = current === 'system' ? 'dark' : current === 'dark' ? 'light' : 'system';
-      applyTheme(next);
+
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme-mode', mode);
+
+    // Nút hiển thị ☾ khi sáng, ☀ khi tối
+    themeBtn.textContent = theme === 'dark' ? '☀' : '☾';
+  }
+
+  const savedTheme = localStorage.getItem('theme-mode') || 'system';
+  applyTheme(savedTheme);
+
+  themeBtn.addEventListener('click', () => {
+    const current = localStorage.getItem('theme-mode') || 'system';
+    const next = current === 'system' ? 'dark' : current === 'dark' ? 'light' : 'system';
+    applyTheme(next);
+  });
+
+  // =====================
+  // LANGUAGE TOGGLE
+  // =====================
+  const langBtn = document.getElementById('langToggle');
+  const dict = {
+    en: {
+      'nav.projects':'Projects','nav.about':'About','nav.contact':'Contact',
+      'nav.skills':'Skills','nav.stats':'Stats',
+      'hero.title1':"Hi, I'm",
+      'hero.subtitle':"I research & develop across multiple fields: ESP32, STM32, Arduino, Robotics, Audio/Voice Assistant, AI Image Processing, Web Development (PHP/JS), CAD/PCB (Inventor, Altium). VTechOn is just one of many representative projects.",
+      'cta.viewProjects':'View projects','cta.website':'Personal Website',
+      'projects.title':'Featured Projects','projects.note':'Some projects inside and outside VTechOn.',
+      'about.title':'About me',
+      'about.body':"I'm Khoa, an Automation Engineer passionate about IoT, audio processing, robotics, web programming, and AI. Besides VTechOn, I also create various repos and experiments for learning and R&D.",
+      'contact.title':'Contact',
+      'footer.note':'Made with GitHub Pages • Auto light/dark • VI/EN'
+    },
+    vi: {
+      'nav.projects':'Dự án','nav.about':'Giới thiệu','nav.contact':'Liên hệ',
+      'nav.skills':'Kỹ năng','nav.stats':'Thống kê',
+      'hero.title1':'Xin chào, mình là',
+      'hero.subtitle':'Mình nghiên cứu đa lĩnh vực: ESP32, STM32, Arduino, Robotics, Audio/Voice Assistant, Xử lý ảnh AI, Lập trình Web (PHP/JS), CAD/PCB (Inventor, Altium). VTechOn chỉ là một trong nhiều dự án tiêu biểu.',
+      'cta.viewProjects':'Xem dự án','cta.website':'Website cá nhân',
+      'projects.title':'Dự án tiêu biểu','projects.note':'Một số dự án trong và ngoài VTechOn.',
+      'about.title':'Giới thiệu',
+      'about.body':'Mình là Khoa, Automation Engineer đam mê IoT, xử lý âm thanh, robot, lập trình web và AI. Ngoài VTechOn, mình còn xây nhiều repo thử nghiệm phục vụ học tập & R&D.',
+      'contact.title':'Liên hệ',
+      'footer.note':'Made with GitHub Pages • Auto light/dark • VI/EN'
+    }
+  };
+
+  function setLang(code) {
+    const map = dict[code];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (map[key]) el.textContent = map[key];
     });
+    localStorage.setItem('lang', code);
+    langBtn.textContent = code.toUpperCase();
+    document.documentElement.lang = code;
+  }
 
-    // SIMPLE i18n (VI/EN)
-    const dict = {
-      en: {
-        'nav.projects': 'Projects','nav.about':'About','nav.contact':'Contact',
-        'hero.title1':'Hi, I\'m','hero.subtitle':'ESP32, Robotics, Audio/Voice Assistant R&D; building the VTechOn ecosystem (hardware + software).',
-        'cta.viewProjects':'View projects','cta.website':'VTechOn Website',
-        'projects.title':'Featured projects','projects.note':'Some representative repos from the VTechOn ecosystem.',
-        'about.title':'About me','about.body':'I\'m Khoa, an Automation Engineer who loves building smart devices (IoT), audio processing, robotics, and hybrid offline/online AI systems. Everything rolls up under the VTechOn brand (hardware + software), integrated with GitHub/WordPress/YouTube.',
-        'contact.title':'Contact','footer.note':'Made with GitHub Pages • Auto light/dark • VI/EN'
-      },
-      vi: {
-        'nav.projects':'Dự án','nav.about':'Giới thiệu','nav.contact':'Liên hệ',
-        'hero.title1':'Xin chào, mình là','hero.subtitle':'Nghiên cứu ESP32, Robot, Audio/Voice Assistant; xây hệ sinh thái VTechOn (hardware + software).',
-        'cta.viewProjects':'Xem dự án','cta.website':'Website VTechOn',
-        'projects.title':'Dự án nổi bật','projects.note':'Một vài repo tiêu biểu trong hệ sinh thái VTechOn.',
-        'about.title':'Về mình','about.body':'Mình là Khoa, Automation Engineer — thích chế tạo thiết bị thông minh (IoT), xử lý âm thanh, robot, và hệ thống AI lai offline/online. Toàn bộ dự án gom lại dưới thương hiệu VTechOn (hardware + software), tích hợp GitHub/WordPress/YouTube.',
-        'contact.title':'Liên hệ','footer.note':'Made with GitHub Pages • Auto light/dark • VI/EN'
-      }
-    }
-    const langBtn = document.getElementById('langToggle');
-    function setLang(code){
-      const map = dict[code];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if(map[key]) el.textContent = map[key];
-      });
-      localStorage.setItem('lang', code);
-      langBtn.textContent = code.toUpperCase();
-      document.documentElement.lang = code;
-    }
-    const savedLang = localStorage.getItem('lang') || 'vi';
-    setLang(savedLang);
-    langBtn.addEventListener('click', () => setLang(localStorage.getItem('lang') === 'vi' ? 'en' : 'vi'));
-  </script>
+  const savedLang = localStorage.getItem('lang') || 'vi';
+  setLang(savedLang);
+
+  langBtn.addEventListener('click', () => {
+    const nextLang = localStorage.getItem('lang') === 'vi' ? 'en' : 'vi';
+    setLang(nextLang);
+  });
+</script>
 </body>
 </html>
