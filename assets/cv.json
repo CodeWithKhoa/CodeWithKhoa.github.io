@@ -1,0 +1,125 @@
+{
+  "profile": {
+    "name": "Trần Đặng Khoa",
+    "dob": "2006-12-31",
+    "gender": { "vi": "Nam", "en": "Male" },
+    "location": { "vi": "Hưng Yên, Hưng Yên, Việt Nam", "en": "Hung Yen, Hung Yen, Vietnam" },
+    "title": { "vi": "Sinh viên · Công nghệ điều khiển & tự động hóa", "en": "Student · Control & Automation Engineering" },
+    "contacts": [
+      { "type": "phone",  "value": "0936763612", "href": "tel:0936763612" },
+      { "type": "email",  "value": "trandangkhoa31122006@gmail.com", "href": "mailto:trandangkhoa31122006@gmail.com" },
+      { "type": "website", "value": "trandangkhoadev.blogspot.com", "href": "https://trandangkhoadev.blogspot.com" },
+      { "type": "github", "value": "github.com/CodeWithKhoa", "href": "https://github.com/CodeWithKhoa" }
+    ]
+  },
+  "sections": {
+    "summary": {
+      "vi": "Tôi là Trần Đăng Khoa, sinh viên ngành Công nghệ Điều khiển & Tự động hóa. Tôi yêu thích xây dựng những hệ thống nhúng tin cậy — từ ý tưởng, thiết kế mạch/bo mạch, lập trình firmware (ESP32/STM32), truyền thông không dây, cho tới giao diện điều khiển trên web. Tôi cũng quan tâm tới xử lý âm thanh/giọng nói (wake‑word, TTS) và thị giác máy tính để nâng trải nghiệm người dùng. Trong các hoạt động, tôi tập trung ở Robocon (VTV) với vai trò lập trình, thiết kế mạch và đấu dây cho các cụm chức năng; và dự án nghiên cứu RobotControler (tay cầm không dây dùng STM32, truyền sóng, vỏ/PCB hoàn chỉnh). Tôi ưu tiên giải pháp gọn nhẹ, ổn định, có thể mở rộng; làm việc kỷ luật với Git/GitHub; và luôn hướng tới sản phẩm có tính ứng dụng thực tế.",
+      "en": "I’m Tran Dang Khoa, a Control & Automation Engineering student. I enjoy building reliable embedded systems end‑to‑end — from ideas and schematic/PCB design to firmware (ESP32/STM32), wireless communication, and web‑based control dashboards. I’m also interested in audio/voice DSP (wake‑word, TTS) and computer vision to improve user experience. In competitions, I focus on Robocon (VTV) with programming, circuit design, and wiring for functional modules; and in research I’m developing RobotControler — a wireless handheld controller built around STM32 with radio link and a complete enclosure/PCB. I value lean, stable, and scalable solutions, disciplined collaboration with Git/GitHub, and delivering practical, usable products."
+    },
+    "experience": [
+      {
+        "title": { "vi": "Dự án học tập & cá nhân", "en": "Academic & Personal Projects" },
+        "org":   { "vi": "Embedded/Web", "en": "Embedded/Web" },
+        "time": "2022–nay",
+        "bullets": [
+          { "vi": "Phát triển firmware (ESP32/STM32), tối ưu thời gian thực (RTOS).", "en": "Develop firmware (ESP32/STM32) with real‑time optimizations (RTOS)." },
+          { "vi": "Xây dựng dashboard IoT realtime (WebSocket/API) cho giám sát/điều khiển.", "en": "Build realtime IoT dashboards (WebSocket/API) for monitoring/control." },
+          { "vi": "Thử nghiệm xử lý ảnh/AI phục vụ nghiên cứu & proof‑of‑concept.", "en": "Experiment with CV/AI for research and proofs‑of‑concept." }
+        ]
+      }
+    ],
+    "experienceRefs": ["robocon", "robotcontroler"],
+    "projects": [
+      { "name": { "vi": "Mini Voice Assistant", "en": "Mini Voice Assistant" }, "desc": { "vi": "Thiết bị nhận giọng nói cục bộ, wake‑word, TTS, điều khiển IoT.", "en": "Local voice device with wake‑word, TTS, and IoT control." } },
+      { "name": { "vi": "Smart Robot Platform", "en": "Smart Robot Platform" }, "desc": { "vi": "Khung robot mô‑đun, IMU/mapping, điều khiển PID, BLE/Wi‑Fi.", "en": "Modular robot platform, IMU/mapping, PID control, BLE/Wi‑Fi." } },
+      { "name": { "vi": "IoT Dashboard", "en": "IoT Dashboard" }, "desc": { "vi": "Bảng điều khiển realtime (JS/Socket) cho nhiều nhóm thiết bị.", "en": "Realtime web dashboard (JS/Socket) for multiple device groups." } },
+      { "name": { "vi": "Image Processing Toolkit", "en": "Image Processing Toolkit" }, "desc": { "vi": "Bộ thử nghiệm xử lý ảnh phục vụ R&D.", "en": "Experimental toolkit for image processing R&D." } }
+    ],
+    "skillsCore": [
+      { "name": {"vi":"Embedded (ESP32/STM32/Arduino)", "en":"Embedded (ESP32/STM32/Arduino)"}, "level": 92 },
+      { "name": {"vi":"Robotics · Điều khiển", "en":"Robotics · Control"}, "level": 88 },
+      { "name": {"vi":"Audio/Voice · DSP", "en":"Audio/Voice · DSP"}, "level": 78 },
+      { "name": {"vi":"Web (JS/PHP)", "en":"Web (JS/PHP)"}, "level": 75 },
+      { "name": {"vi":"AI · Ảnh/CV", "en":"AI · CV/Image"}, "level": 72 }
+    ],
+    "tools": ["C/C++","FreeRTOS","PlatformIO","Inventor","Altium","Node/Express","MySQL","Tailwind","Python"],
+    "languages": [
+      { "vi": "Tiếng Việt (bản ngữ)", "en": "Vietnamese (native)" },
+      { "vi": "Tiếng Anh (làm việc)", "en": "English (working proficiency)" }
+    ],
+    "education": [
+      { "school": { "vi": "Đại học Kinh Tế - Kỹ Thuật Công Nghiệp", "en": "University of Economics - Technology for Industries (UNETI)" },
+        "degree": { "vi": "Kỹ sư Công nghệ điều khiển & tự động hóa", "en": "B.Eng., Control & Automation Engineering" },
+        "start": "2024", "end": "2028", "gpa": "" }
+    ],
+    "activities": [
+      { "id": "club", "name": { "vi": "Câu lạc bộ Robot & Công nghệ", "en": "Robotics & Technology Club" },
+        "org":  { "vi": "Trường đại học", "en": "University" },
+        "time": "—",
+        "details": [
+          { "vi": "Tham gia trao đổi kiến thức chuyên ngành", "en": "Participate in domain knowledge exchanges" },
+          { "vi": "Tham gia các giải robot do các trường đại học tổ chức", "en": "Compete in inter-university robotics contests" }
+        ]
+      },
+      { "id": "robocon", "name": { "vi": "Cuộc thi Robocon (VTV)", "en": "Robocon Contest (VTV)" },
+        "org":  { "vi": "Đài Truyền hình Việt Nam (VTV)", "en": "Vietnam Television (VTV)" },
+        "time": "2024–2028",
+        "details": [
+          { "vi": "Tập trung lập trình, thiết kế mạch và đấu dây cho các cụm chức năng.", "en": "Focused on programming, circuit/PCB design, and wiring for functional modules." },
+          { "vi": "Phát triển hệ điều khiển, xử lý cảm biến và chiến lược thi đấu.", "en": "Develop control systems, sensor processing, and match strategies." },
+          { "vi": "Làm việc nhóm, quản lý phiên bản bằng Git/GitHub, đảm bảo độ tin cậy.", "en": "Teamwork, version control with Git/GitHub, reliability assurance." }
+        ]
+      },
+      { "id": "robotcontroler", "name": { "vi": "Nghiên cứu khoa học sinh viên — RobotControler", "en": "Student Scientific Research — RobotControler" },
+        "org":  { "vi": "Khoa/Trường", "en": "Faculty/University" },
+        "time": "2025",
+        "details": [
+          { "vi": "Thiết kế tay cầm điều khiển không dây: mạch STM32, truyền sóng/không dây, vỏ/bo mạch hoàn chỉnh.", "en": "Design a wireless handheld controller: STM32-based PCB, radio/wireless link, complete enclosure/board." },
+          { "vi": "Tối ưu trải nghiệm điều khiển và độ ổn định tín hiệu.", "en": "Optimize control feel and signal robustness." },
+          { "vi": "Viết báo cáo và trình bày kết quả nghiên cứu.", "en": "Write reports and present research outcomes." }
+        ]
+      }
+    ],
+    "achievements": [
+      { "time": "2023–2024", "vi": "Hai năm liên tiếp đạt giải Nhất STEM của trường THPT", "en": "Two consecutive years winning 1st prize in high school STEM competitions" },
+      { "time": "—", "vi": "Chứng chỉ TOEIC 650+", "en": "TOEIC certificate 650+" }
+    ]
+  },
+  "labels": {
+    "vi": {
+      "skillsCore": "Kỹ năng chính",
+      "tools": "Công cụ · Công nghệ",
+      "langs": "Ngôn ngữ",
+      "summary": "Tóm tắt",
+      "experience": "Kinh nghiệm",
+      "projects": "Dự án nổi bật",
+      "personal": "Thông tin",
+      "contact": "Liên hệ",
+      "skills": "Kỹ năng bổ sung",
+      "education": "Học vấn",
+      "activities": "Hoạt động",
+      "achievements": "Thành tích",
+      "dob": "Ngày sinh",
+      "gender": "Giới tính",
+      "location": "Địa điểm"
+    },
+    "en": {
+      "skillsCore": "Core Skills",
+      "tools": "Tools · Technologies",
+      "langs": "Languages",
+      "summary": "Summary",
+      "experience": "Experience",
+      "projects": "Featured Projects",
+      "personal": "Personal Info",
+      "contact": "Contact",
+      "skills": "Additional Skills",
+      "education": "Education",
+      "activities": "Activities",
+      "achievements": "Achievements",
+      "dob": "Date of Birth",
+      "gender": "Gender",
+      "location": "Location"
+    }
+  }
+}
