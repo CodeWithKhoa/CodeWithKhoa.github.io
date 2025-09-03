@@ -1,57 +1,170 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="system" data-accent="ocean">
+<html lang="vi" data-theme="system" data-accent="ocean" data-ui="card" data-print="light">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Trần Đăng Khoa — CV</title>
     <meta name="description" content="CV — Control & Automation · IoT · Robotics · Audio/AI · Web" />
     <meta property="og:title" content="Trần Đăng Khoa — CV" />
     <meta property="og:description" content="Control & Automation · IoT · Robotics · Audio/AI · Web" />
     <meta property="og:type" content="profile" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="icon" type="image/png" href="assets/profile.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/cv.css" />
-    <style> :root { color-scheme: light dark; } </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/profile.png" />
+
+    <style>
+      :root{
+        color-scheme: light dark;
+        --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --card:#f8fafc; --line:#e2e8f0;
+        --shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 12px rgb(0 0 0 / 6%);
+        --radius:16px; --pad:16px; --accent:#0ea5e9; --accent-weak: color-mix(in oklab, var(--accent), #000 85%);
+        --t-2xl: clamp(24px,4.2vw,32px); --t-xl: clamp(18px,3.2vw,22px); --t-lg: clamp(16px,2.8vw,18px);
+        --t-md: clamp(14px,2.6vw,16px); --t-sm: clamp(12px,2.2vw,14px);
+      }
+      @media (prefers-color-scheme: dark){ :root[data-theme="system"]{ --bg:#0b1220; --fg:#e5e7eb; --muted:#9ca3af; --card:#0f172a; --line:#1f2937; } }
+      [data-theme="dark"]{ --bg:#0b1220; --fg:#e5e7eb; --muted:#9ca3af; --card:#0f172a; --line:#1f2937; }
+      [data-accent="emerald"]{--accent:#10b981} [data-accent="purple"]{--accent:#8b5cf6}
+      [data-accent="amber"]{--accent:#f59e0b}  [data-accent="rose"]{--accent:#f43f5e}
+      [data-accent="slate"]{--accent:#475569}
+
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);
+        -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      a{color:inherit;text-decoration:none}
+      img{display:block;max-width:100%;height:auto}
+
+      .container{max-width:1100px;margin:0 auto;padding:calc(env(safe-area-inset-top)+16px) 16px calc(env(safe-area-inset-bottom)+24px)}
+      .header{position:sticky;top:0;z-index:40;display:grid;gap:12px;grid-template-columns:1fr;background:color-mix(in oklab,var(--bg),transparent 8%);
+        backdrop-filter:saturate(120%) blur(8px);padding:10px 12px;margin:0 -12px 12px;border-bottom:1px solid var(--line)}
+      .identity{display:flex;align-items:center;gap:12px}
+      .avatar{width:56px;height:56px;border-radius:999px;object-fit:cover;border:1px solid var(--line)}
+      .title{font-size:var(--t-xl);line-height:1.1;margin:0}
+      .role{color:var(--muted);font-size:var(--t-sm)}
+      .actions{display:flex;gap:8px;overflow:auto hidden;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+      .actions>*{flex:none}
+      .btn,.picker{font:inherit;font-size:var(--t-sm);padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);min-height:40px;cursor:pointer;box-shadow:var(--shadow)}
+      .btn.brand{background:var(--accent);color:#fff;border-color:var(--accent-weak)}
+      .picker{padding-right:28px}
+
+      .grid{display:grid;gap:16px;grid-template-columns:1fr}
+      .sidebar,.content{display:grid;gap:12px}
+
+      .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+      .block{padding:var(--pad)} .section{padding:var(--pad)}
+
+      /* UI styles switchable by data-ui */
+      [data-ui="line"] .panel{background:transparent;box-shadow:none;border:0}
+      [data-ui="line"] .section,[data-ui="line"] .block{padding:var(--pad) 0;border-bottom:1px solid var(--line);border-radius:0}
+      [data-ui="line"] .sidebar>.panel:last-child .block,[data-ui="line"] .content>.panel:last-child .section{border-bottom:0}
+      [data-ui="outline"] .panel{background:transparent;box-shadow:none;border:1.5px dashed var(--line)}
+      [data-ui="minimal"] .panel{background:transparent;box-shadow:none;border:0}
+      [data-ui="minimal"] .tags .tag{border:1px solid var(--line);background:transparent}
+
+      .tags{display:flex;flex-wrap:wrap;gap:8px}
+      .tag{padding:6px 10px;border-radius:999px;background:color-mix(in oklab,var(--accent),var(--bg) 85%);border:1px solid var(--line);font-size:var(--t-sm)}
+      .bullets{margin:8px 0 0;padding:0 0 0 18px} .bullets li{margin-bottom:6px}
+      .muted{color:var(--muted)}
+
+      .skills .skill{display:flex;justify-content:space-between;align-items:center;gap:8px}
+      .skills .bar{width:100%;height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin:6px 0 10px}
+      .skills .bar span{display:block;height:100%;background:var(--accent)}
+
+      .item h4{margin:0 0 4px;font-size:var(--t-lg)}
+      .item .meta{color:var(--muted);font-size:var(--t-sm);margin-bottom:6px}
+
+      .two-col{display:grid;grid-template-columns:1fr;gap:10px}
+
+      @media (min-width:760px){
+        .grid{grid-template-columns:320px 1fr}
+        .two-col{grid-template-columns:1fr 1fr}
+        .header{grid-template-columns:1fr auto;align-items:center}
+        .avatar{width:64px;height:64px}
+      }
+
+      /* PRINT: A4 + desktop layout + chia trang mượt */
+      @media print{
+        @page{size:A4;margin:10mm}
+
+        /* Ẩn điều khiển */
+        .header,.actions{display:none!important}
+
+        /* Bố cục 2 cột như desktop */
+        .container{max-width:1100px!important;padding:0!important;margin:0 auto!important}
+        .grid{display:grid!important;grid-template-columns:320px 1fr!important;gap:14px!important}
+        .two-col{grid-template-columns:1fr 1fr!important}
+        .avatar{width:64px!important;height:64px!important}
+
+        /* Nền/trắng khi Print: Light */
+        [data-print="light"]{color-scheme:light;--bg:#fff;--fg:#111;--muted:#6b7280;--card:#fff;--line:#e5e7eb}
+        [data-print="light"] body{background:#fff!important;color:#111!important}
+        [data-print="light"] .panel{background:#fff!important;border-color:#e5e7eb!important;box-shadow:none!important}
+
+        /* Giữ màu màn hình nếu Print: Screen */
+        [data-print="screen"]{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+        /* Siết spacing cho giấy */
+        :root{--pad:12px}
+        .block,.section{padding:12px!important}
+        .panel{box-shadow:none!important;border-radius:10px!important}
+
+        /* Quy tắc chia trang đẹp */
+        h1,h2,h3{break-after:avoid}
+        p,li{orphans:3;widows:3}
+
+        /* Sidebar (ngắn) giữ nguyên khối */
+        .sidebar .panel{break-inside:avoid;page-break-inside:avoid}
+
+        /* Nội dung dài cho phép tách mượt */
+        .content .section,
+        .content .block,
+        .content .item{
+          break-inside:auto;page-break-inside:auto;
+        }
+      }
+
+      @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    </style>
   </head>
   <body>
     <div class="container">
-      <header class="header">
+      <header class="header" role="banner">
         <div class="identity">
-          <img id="avatarImg" class="avatar" src="assets/profile.png" alt="Avatar"/>
+          <img id="avatarImg" class="avatar" src="assets/profile.png" alt="Avatar" loading="lazy" />
           <div>
             <h1 class="title" id="nameEl">Trần Đăng Khoa</h1>
-            <div class="role" id="roleEl">Student · Control & Automation Engineering</div>
+            <div class="role" id="roleEl">Sinh viên · Công nghệ điều khiển & tự động hóa</div>
           </div>
         </div>
-        <div class="actions">
-          <a class="btn brand" href="#" onclick="window.print(); return false;">In / Lưu PDF</a>
-          <select id="printSelect" class="picker" title="Print mode">
+        <div class="actions" aria-label="Tùy chọn hiển thị">
+          <a class="btn brand" href="#" onclick="window.print();return false">In / Lưu PDF</a>
+          <select id="printSelect" class="picker" title="Chế độ in">
             <option value="light">Print: Light</option>
             <option value="screen">Print: Screen</option>
           </select>
-          <select id="accentSelect" class="picker" title="Accent theme">
-            <option value="ocean">Ocean</option>
-            <option value="emerald">Emerald</option>
-            <option value="purple">Purple</option>
-            <option value="amber">Amber</option>
-            <option value="rose">Rose</option>
-            <option value="slate">Slate</option>
+          <select id="accentSelect" class="picker" title="Màu nhấn">
+            <option value="ocean">Ocean</option><option value="emerald">Emerald</option>
+            <option value="purple">Purple</option><option value="amber">Amber</option>
+            <option value="rose">Rose</option><option value="slate">Slate</option>
           </select>
-          <select id="uiSelect" class="picker" title="UI style">
-            <option value="card">Card</option>
-            <option value="line">Line</option>
-            <option value="outline">Outline</option>
-            <option value="minimal">Minimal</option>
+          <select id="uiSelect" class="picker" title="Kiểu giao diện">
+            <option value="card">Card</option><option value="line">Line</option>
+            <option value="outline">Outline</option><option value="minimal">Minimal</option>
           </select>
-          <button id="langToggle" class="btn" title="Đổi ngôn ngữ">VI</button>
-          <button id="themeToggle" class="btn" title="Đổi giao diện">Chế độ: Tự động</button>
+          <button id="langToggle" class="btn" type="button" title="Đổi ngôn ngữ">VI</button>
+          <button id="themeToggle" class="btn" type="button" title="Đổi giao diện">Chế độ: Tự động</button>
         </div>
       </header>
 
-      <main class="grid">
+      <main class="grid" role="main">
         <aside class="sidebar">
           <section class="panel block contact">
             <h3 id="contactTitle">Liên hệ</h3>
@@ -117,15 +230,21 @@
         </section>
       </main>
 
-      <div class="footer">© <span id="year"></span> Trần Đăng Khoa</div>
+      <footer class="footer muted" style="text-align:center;padding:18px 0">
+        © <span id="year"></span> Trần Đăng Khoa
+      </footer>
     </div>
 
     <script>
-      // Year
+      // Năm hiện tại
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Theme toggle: system -> dark -> light
+      // Helpers for prefs
       const html = document.documentElement;
+      function setAttr(k,v){ html.setAttribute(k,v); localStorage.setItem('cv-'+k.replace('data-',''), v); }
+      function getPref(k, def){ return localStorage.getItem('cv-'+k) || def; }
+
+      // Theme toggle (system -> dark -> light)
       const themeBtn = document.getElementById('themeToggle');
       function applyMode(mode){
         let theme = mode;
@@ -135,300 +254,170 @@
         themeBtn.textContent = 'Chế độ: ' + (mode === 'system' ? 'Tự động' : (theme === 'dark' ? 'Tối' : 'Sáng'));
       }
       applyMode(localStorage.getItem('cv-theme') || 'system');
-      themeBtn.addEventListener('click', () => {
+      themeBtn.addEventListener('click', ()=>{
         const cur = localStorage.getItem('cv-theme') || 'system';
-        const next = cur === 'system' ? 'dark' : (cur === 'dark' ? 'light' : 'system');
-        applyMode(next);
+        applyMode(cur === 'system' ? 'dark' : (cur === 'dark' ? 'light' : 'system'));
       });
 
-      // Accent picker
+      // Accent / UI / Print
       const accentSelect = document.getElementById('accentSelect');
-      function applyAccent(val){ html.setAttribute('data-accent', val); localStorage.setItem('cv-accent', val); }
-      const savedAccent = localStorage.getItem('cv-accent') || 'ocean';
-      applyAccent(savedAccent);
-      accentSelect.value = savedAccent;
-      accentSelect.addEventListener('change', () => applyAccent(accentSelect.value));
-
-      // UI style picker (changes layout feel)
       const uiSelect = document.getElementById('uiSelect');
-      function applyUI(val){ html.setAttribute('data-ui', val); localStorage.setItem('cv-ui', val); }
-      const savedUI = localStorage.getItem('cv-ui') || 'card';
-      applyUI(savedUI);
-      uiSelect.value = savedUI;
-      uiSelect.addEventListener('change', () => applyUI(uiSelect.value));
-
-      // Print mode: light vs screen
       const printSelect = document.getElementById('printSelect');
-      function applyPrint(val){ html.setAttribute('data-print', val); localStorage.setItem('cv-print', val); }
-      const savedPrint = localStorage.getItem('cv-print') || 'light';
-      applyPrint(savedPrint);
-      printSelect.value = savedPrint;
-      printSelect.addEventListener('change', () => applyPrint(printSelect.value));
+      (function initPrefs(){
+        const a = getPref('accent','ocean'); html.setAttribute('data-accent', a); accentSelect.value = a;
+        const u = getPref('ui','card'); html.setAttribute('data-ui', u); uiSelect.value = u;
+        const p = getPref('print','light'); html.setAttribute('data-print', p); printSelect.value = p;
+        accentSelect.addEventListener('change', ()=> setAttr('data-accent', accentSelect.value));
+        uiSelect.addEventListener('change', ()=> setAttr('data-ui', uiSelect.value));
+        printSelect.addEventListener('change', ()=> setAttr('data-print', printSelect.value));
+      })();
 
-      // VI/EN language data loader
+      // Language + data
       const langBtn = document.getElementById('langToggle');
       const state = { lang: localStorage.getItem('cv-lang') || 'vi', data: null };
       const ICON = { phone:'📞', email:'📧', website:'🌐', github:'💻' };
 
       async function loadData(){
-        try {
+        try{
           const res = await fetch('assets/cv.json', { cache: 'no-cache' });
           state.data = await res.json();
-        } catch (e) {
-          state.data = { profile:{ name:'Trần Đăng Khoa', title:{vi:'Sinh viên', en:'Student'}, dob:'2006-12-31', gender:{vi:'Nam',en:'Male'}, location:{vi:'Hưng Yên, Việt Nam', en:'Hung Yen, Vietnam'}, contacts:[] }, sections:{ summary:{vi:'',en:''}, experience:[], projects:[], skillsExtra:[], education:[], activities:[], achievements:[] }, labels:{ vi:{summary:'Tóm tắt',experience:'Kinh nghiệm',projects:'Dự án',personal:'Thông tin',contact:'Liên hệ',skills:'Kỹ năng',education:'Học vấn',activities:'Hoạt động',achievements:'Thành tích',dob:'Ngày sinh',gender:'Giới tính',location:'Địa điểm'}, en:{summary:'Summary',experience:'Experience',projects:'Projects',personal:'Personal Info',contact:'Contact',skills:'Skills',education:'Education',activities:'Activities',achievements:'Achievements',dob:'Date of Birth',gender:'Gender',location:'Location'} } };
-        }
-        // Ensure correct name override as requested
-        if(state.data && state.data.profile){ state.data.profile.name = 'Trần Đăng Khoa'; }
-        // Also fix page titles to the correct name
-        try {
-          document.title = 'Trần Đăng Khoa — CV';
-          const og = document.querySelector('meta[property="og:title"]');
-          if (og) og.setAttribute('content','Trần Đăng Khoa — CV');
-        } catch(e){}
-        // Avatar candidates: JSON photo -> local file -> default -> GitHub avatar
-        const candidates = [
-          state.data?.profile?.photo,
-          'assets/profile.png',
-          'assets/avt.png',
-          'https://avatars.githubusercontent.com/u/116957307?s=256'
-        ].filter(Boolean);
-        (function setAvatar(urls){
-          const img = document.getElementById('avatarImg');
-          if(!img) return;
-          let i = 0;
-          let favDone = false;
-          function setCircularFaviconFromImage(image){
-            try {
-              const size = 96; // good balance for tabs
-              const canvas = document.createElement('canvas');
-              canvas.width = size; canvas.height = size;
-              const ctx = canvas.getContext('2d');
-              const iw = image.naturalWidth || image.width;
-              const ih = image.naturalHeight || image.height;
-              const scale = Math.max(size/iw, size/ih);
-              const dw = iw*scale, dh = ih*scale;
-              const dx = (size - dw)/2, dy = (size - dh)/2;
-              ctx.clearRect(0,0,size,size);
-              ctx.save();
-              ctx.beginPath(); ctx.arc(size/2, size/2, size/2, 0, Math.PI*2); ctx.closePath(); ctx.clip();
-              ctx.drawImage(image, dx, dy, dw, dh);
-              ctx.restore();
-              const dataUrl = canvas.toDataURL('image/png');
-              let link = document.querySelector('link[rel="icon"]');
-              if(!link){ link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
-              link.href = dataUrl;
-            } catch(e) { /* ignore if cross-origin taint */ }
-          }
-          const next = ()=>{
-            if(i >= urls.length) return;
-            const probe = new Image();
-            // allow CORS for remote fallback
-            if(/^https?:/i.test(urls[i])) probe.crossOrigin = 'anonymous';
-            probe.onload = ()=>{ img.src = probe.src; if(!favDone){ setCircularFaviconFromImage(probe); favDone = true; } };
-            probe.onerror = ()=>{ i++; next(); };
-            probe.src = urls[i];
+        }catch(e){
+          state.data = {
+            profile:{ name:'Trần Đăng Khoa', title:{vi:'Sinh viên',en:'Student'}, dob:'2006-12-31',
+              gender:{vi:'Nam',en:'Male'}, location:{vi:'Hưng Yên, Việt Nam', en:'Hung Yen, Vietnam'}, contacts:[] },
+            sections:{ summary:{vi:'',en:''}, experience:[], projects:[], skillsExtra:[], education:[], activities:[], achievements:[], tools:[], skillsCore:[], languages:[] },
+            labels:{ vi:{summary:'Tóm tắt',experience:'Kinh nghiệm',projects:'Dự án',personal:'Thông tin',contact:'Liên hệ',skills:'Kỹ năng',skillsCore:'Kỹ năng chính',tools:'Công cụ · Công nghệ',langs:'Ngôn ngữ',education:'Học vấn',activities:'Hoạt động',achievements:'Thành tích',dob:'Ngày sinh',gender:'Giới tính',location:'Địa điểm'},
+                     en:{summary:'Summary',experience:'Experience',projects:'Projects',personal:'Personal Info',contact:'Contact',skills:'Skills',skillsCore:'Core Skills',tools:'Tools',langs:'Languages',education:'Education',activities:'Activities',achievements:'Achievements',dob:'Date of Birth',gender:'Gender',location:'Location'} }
           };
+        }
+        if(state.data?.profile) state.data.profile.name = 'Trần Đăng Khoa';
+        document.title = 'Trần Đăng Khoa — CV';
+        const og = document.querySelector('meta[property="og:title"]'); if(og) og.setAttribute('content','Trần Đăng Khoa — CV');
+
+        // Avatar -> favicon tròn
+        const candidates = [state.data?.profile?.photo, 'assets/profile.png', 'assets/avt.png', 'https://avatars.githubusercontent.com/u/116957307?s=256'].filter(Boolean);
+        (function setAvatar(urls){
+          const img = document.getElementById('avatarImg'); if(!img) return;
+          let i=0, fav=false;
+          function setFav(im){ try{
+            const size=96, c=document.createElement('canvas'); c.width=c.height=size; const ctx=c.getContext('2d');
+            const iw=im.naturalWidth||im.width, ih=im.naturalHeight||im.height; const sc=Math.max(size/iw,size/ih);
+            const dw=iw*sc, dh=ih*sc, dx=(size-dw)/2, dy=(size-dh)/2;
+            ctx.clearRect(0,0,size,size); ctx.save(); ctx.beginPath(); ctx.arc(size/2,size/2,size/2,0,Math.PI*2); ctx.closePath(); ctx.clip();
+            ctx.drawImage(im,dx,dy,dw,dh); ctx.restore();
+            const url=c.toDataURL('image/png'); let link=document.querySelector('link[rel="icon"]'); if(!link){ link=document.createElement('link'); link.rel='icon'; document.head.appendChild(link); } link.href=url;
+          }catch(e){} }
+          const next=()=>{ if(i>=urls.length) return; const probe=new Image(); if(/^https?:/i.test(urls[i])) probe.crossOrigin='anonymous';
+            probe.onload=()=>{ img.src=probe.src; if(!fav){ setFav(probe); fav=true; } };
+            probe.onerror=()=>{ i++; next(); }; probe.src=urls[i]; };
           next();
         })(candidates);
+
         render();
       }
 
-      function fmtDate(iso){
-        if(!iso) return '';
-        const d = new Date(iso);
-        if(Number.isNaN(d)) return iso;
-        return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
-      }
-
-      function setText(id, text){ const el = document.getElementById(id); if(el) el.textContent = text || ''; }
-      function setHTML(id, html){ const el = document.getElementById(id); if(el) el.innerHTML = html || ''; }
-
-      function normalizedRange(start, end, lang){
-        const year = new Date().getFullYear();
-        const yn = parseInt(end, 10);
-        if(end && !Number.isNaN(yn) && yn > year){
-          return `${start} – ${lang==='vi' ? 'nay' : 'present'}`;
-        }
-        return [start, end].filter(Boolean).join(' – ');
-      }
-
-      function adjustFreeRange(str, lang){
-        if(!str) return '';
-        const m = str.match(/(\d{4}).*[–-].*(\d{4})/);
-        if(m){
-          const start = m[1];
-          const endNum = parseInt(m[2],10);
-          const year = new Date().getFullYear();
-          if(endNum > year){
-            return `${start}–${lang==='vi' ? 'nay' : 'present'}`;
-          }
-        }
-        return str;
-      }
-
-      function prettyBreak(value, type){
-        if(type === 'email') return value.replace(/([@._+-])/g, '$1<wbr>');
-        if(type === 'website' || type === 'github') return value.replace(/([\/.?=&_-])/g, '$1<wbr>');
-        return value;
-      }
+      function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso); if(Number.isNaN(d)) return iso; return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); }
+      function setText(id, text){ const el=document.getElementById(id); if(el) el.textContent=text||''; }
+      function normalizedRange(start,end,lang){ const y=new Date().getFullYear(); const yn=parseInt(end,10); if(end && !Number.isNaN(yn) && yn>y){ return `${start} – ${lang==='vi'?'nay':'present'}`; } return [start,end].filter(Boolean).join(' – '); }
+      function adjustFreeRange(str,lang){ if(!str) return ''; const m=str.match(/(\d{4}).*[–-].*(\d{4})/); if(m){ const s=m[1]; const en=parseInt(m[2],10); const y=new Date().getFullYear(); if(en>y){ return `${s}–${lang==='vi'?'nay':'present'}`; } } return str; }
+      function prettyBreak(v,t){ if(t==='email') return v.replace(/([@._+-])/g,'$1<wbr>'); if(t==='website'||t==='github') return v.replace(/([\\/.?=&_-])/g,'$1<wbr>'); return v; }
 
       function render(){
-        const { data, lang } = state;
-        const L = data.labels?.[lang] || {};
-        // Identity
-        setText('nameEl', data.profile.name);
-        setText('roleEl', data.profile.title?.[lang] || '');
-
-        // Titles
-        setText('summaryTitle', L.summary || 'Summary');
-        setText('expTitle', L.experience || 'Experience');
-        setText('projTitle', L.projects || 'Projects');
-        setText('contactTitle', L.contact || 'Contact');
-        setText('personalTitle', L.personal || 'Personal Info');
-        setText('extraSkillsTitle', L.skills || 'Skills');
-        setText('coreSkillsTitle', L.skillsCore || 'Core Skills');
-        setText('toolsTitle', L.tools || 'Tools');
-        setText('langsTitle', L.langs || 'Languages');
-        setText('eduTitle', L.education || 'Education');
-        setText('achTitle', L.achievements || 'Achievements');
-        setText('actTitle', L.activities || 'Activities');
-
-        // Summary
+        const { data } = state; const lang = state.lang; const L = data.labels?.[lang] || {};
+        setText('nameEl', data.profile.name); setText('roleEl', data.profile.title?.[lang] || '');
+        setText('summaryTitle', L.summary || 'Summary'); setText('expTitle', L.experience || 'Experience');
+        setText('projTitle', L.projects || 'Projects'); setText('contactTitle', L.contact || 'Contact');
+        setText('personalTitle', L.personal || 'Personal Info'); setText('extraSkillsTitle', L.skills || 'Skills');
+        setText('coreSkillsTitle', L.skillsCore || 'Core Skills'); setText('toolsTitle', L.tools || 'Tools');
+        setText('langsTitle', L.langs || 'Languages'); setText('eduTitle', L.education || 'Education');
+        setText('achTitle', L.achievements || 'Achievements'); setText('actTitle', L.activities || 'Activities');
         setText('summaryText', data.sections.summary?.[lang] || '');
 
-        // Contacts
         const ctn = document.getElementById('contactList');
         if(ctn){
-          ctn.innerHTML = '';
-          (data.profile.contacts||[]).forEach(c => {
-            const a = document.createElement('a');
-            a.href = c.href || '#'; a.target = c.href?.startsWith('http') ? '_blank' : '';
-            a.rel = a.target ? 'noopener' : '';
-            const text = prettyBreak(c.value, c.type);
-            a.innerHTML = `<span>${ICON[c.type]||'🔗'}</span><div><div class="contact-text" title="${c.value}">${text}</div><small>${(c.type||'').toUpperCase()}</small></div>`;
-            a.className = 'rounded-2xl border p-2';
+          ctn.innerHTML='';
+          (data.profile.contacts||[]).forEach(c=>{
+            const a=document.createElement('a');
+            a.href=c.href||'#'; a.target=c.href?.startsWith('http')?'_blank':''; a.rel=a.target?'noopener':'';
+            a.style.display='grid'; a.style.gridTemplateColumns='auto 1fr'; a.style.alignItems='center'; a.style.gap='10px';
+            a.style.padding='10px'; a.style.border='1px solid var(--line)'; a.style.borderRadius='14px'; a.style.background='var(--bg)';
+            const text=prettyBreak(c.value,c.type);
+            a.innerHTML=`<span style="font-size:18px">${(ICON[c.type]||'🔗')}</span><div><div class="contact-text" title="${c.value}" style="overflow-wrap:anywhere">${text}</div><small class="muted">${(c.type||'').toUpperCase()}</small></div>`;
             ctn.appendChild(a);
           });
         }
 
-        // Core skills (progress bars)
-        const cores = document.getElementById('coreSkillsList');
+        const cores=document.getElementById('coreSkillsList');
         if(cores){
-          const label = (pct) => {
-            if(pct >= 85) return lang==='vi' ? 'Nâng cao' : 'Advanced';
-            if(pct >= 70) return lang==='vi' ? 'Khá' : 'Proficient';
-            return lang==='vi' ? 'Cơ bản' : 'Basic';
-          };
-          cores.innerHTML = (data.sections.skillsCore||[]).map(s => {
-            const pct = Math.max(0, Math.min(100, Number(s.level)||0));
-            return `
-              <div class="skill"><strong>${s.name?.[lang]||''}</strong><span class="muted">${label(pct)}</span></div>
-              <div class="bar"><span style="width:${pct}%" data-pct="${pct}%"></span></div>
-            `;
+          const label=(p)=> p>=85?(lang==='vi'?'Nâng cao':'Advanced'): p>=70?(lang==='vi'?'Khá':'Proficient'):(lang==='vi'?'Cơ bản':'Basic');
+          cores.innerHTML=(data.sections.skillsCore||[]).map(s=>{
+            const pct=Math.max(0,Math.min(100,Number(s.level)||0));
+            return `<div class="skill"><strong>${s.name?.[lang]||''}</strong><span class="muted">${label(pct)}</span></div>
+                    <div class="bar"><span style="width:${pct}%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"></span></div>`;
           }).join('');
         }
 
-        // Tools
-        const tools = document.getElementById('toolsList');
-        if(tools){
-          tools.innerHTML = (data.sections.tools||[]).map(t => `<span class="tag">${t}</span>`).join('');
-        }
+        const tools=document.getElementById('toolsList'); if(tools){ tools.innerHTML=(data.sections.tools||[]).map(t=>`<span class="tag">${t}</span>`).join(''); }
+        const langs=document.getElementById('langList'); if(langs){ langs.innerHTML=(data.sections.languages||[]).map(x=>`<span class="tag">${x[lang]||''}</span>`).join(''); }
 
-        // Languages
-        const langs = document.getElementById('langList');
-        if(langs){
-          langs.innerHTML = (data.sections.languages||[]).map(x => `<span class="tag">${x[lang]||''}</span>`).join('');
-        }
-
-        // Personal info tags
-        const info = document.getElementById('personalInfo');
+        const info=document.getElementById('personalInfo');
         if(info){
-          const tags = [];
+          const tags=[];
           if(data.profile.dob) tags.push(`<span class="tag"><strong>${L.dob||'DOB'}:</strong> ${fmtDate(data.profile.dob)}</span>`);
           if(data.profile.gender) tags.push(`<span class="tag"><strong>${L.gender||'Gender'}:</strong> ${data.profile.gender[lang]||''}</span>`);
           if(data.profile.location) tags.push(`<span class="tag"><strong>${L.location||'Location'}:</strong> ${data.profile.location[lang]||''}</span>`);
-          info.innerHTML = tags.join('\n');
+          info.innerHTML=tags.join('\n');
         }
 
-        // Extra skills
-        const extraPanel = document.getElementById('extraSkillsPanel');
-        const extraBox = document.getElementById('extraSkills');
+        const extraPanel=document.getElementById('extraSkillsPanel');
+        const extraBox=document.getElementById('extraSkills');
         if(extraPanel && extraBox){
-          if(data.sections.skillsExtra && data.sections.skillsExtra.length){
-            extraPanel.style.display = '';
-            extraBox.innerHTML = data.sections.skillsExtra.map(s => {
-              const head = `<div class="muted" style="margin:8px 0 6px"><strong>${s.name?.[lang]||''}</strong></div>`;
-              const list = (s.items||[]).map(i => `<li>${i[lang]||''}</li>`).join('');
-              return head + `<ul class="bullets">${list}</ul>`;
+          if(data.sections.skillsExtra?.length){
+            extraPanel.style.display='';
+            extraBox.innerHTML=data.sections.skillsExtra.map(s=>{
+              const head=`<div class="muted" style="margin:8px 0 6px"><strong>${s.name?.[lang]||''}</strong></div>`;
+              const list=(s.items||[]).map(i=>`<li>${i[lang]||''}</li>`).join('');
+              return head+`<ul class="bullets">${list}</ul>`;
             }).join('');
-          } else {
-            extraPanel.style.display = 'none';
-          }
+          }else extraPanel.style.display='none';
         }
 
-        // Experience (merge explicit items + references to activities)
-        const exp = document.getElementById('expList');
+        const exp=document.getElementById('expList');
         if(exp){
-          const explicit = (data.sections.experience||[]).map(x => ({
-            title: x.title?.[lang]||'', org: x.org?.[lang]||'', time: x.time||'', bullets: (x.bullets||[]).map(b => b[lang]||'')
-          }));
-          const byId = Object.fromEntries((data.sections.activities||[]).filter(a => a.id).map(a => [a.id, a]));
-          const refs = (data.sections.experienceRefs||[]).map(id => byId[id]).filter(Boolean).map(a => ({
-            title: a.name?.[lang]||'', org: a.org?.[lang]||'', time: a.time||'', bullets: (a.details||[]).map(d => d[lang]||'')
-          }));
-          const all = [...explicit, ...refs];
-          exp.innerHTML = all.map(x => {
-            const meta = [x.org, adjustFreeRange(x.time||'', lang)].filter(Boolean).join(' · ');
-            const bullets = (x.bullets||[]).map(t => `<li>${t}</li>`).join('');
+          const explicit=(data.sections.experience||[]).map(x=>({title:x.title?.[lang]||'',org:x.org?.[lang]||'',time:x.time||'',bullets:(x.bullets||[]).map(b=>b[lang]||'')}));
+          const byId=Object.fromEntries((data.sections.activities||[]).filter(a=>a.id).map(a=>[a.id,a]));
+          const refs=(data.sections.experienceRefs||[]).map(id=>byId[id]).filter(Boolean).map(a=>({title:a.name?.[lang]||'',org:a.org?.[lang]||'',time:a.time||'',bullets:(a.details||[]).map(d=>d[lang]||'')}));
+          const all=[...explicit,...refs];
+          exp.innerHTML=all.map(x=>{
+            const meta=[x.org, (x.time?adjustFreeRange(x.time, lang):'')].filter(Boolean).join(' · ');
+            const bullets=(x.bullets||[]).map(t=>`<li>${t}</li>`).join('');
             return `<div class="item"><h4>${x.title}</h4><div class="meta">${meta}</div><ul class="bullets">${bullets}</ul></div>`;
           }).join('');
         }
 
-        // Projects
-        const proj = document.getElementById('projList');
-        if(proj){
-          proj.innerHTML = (data.sections.projects||[]).map(p => `<p><strong>${p.name?.[lang]||''}:</strong> ${p.desc?.[lang]||''}</p>`).join('');
-        }
+        const proj=document.getElementById('projList'); if(proj){ proj.innerHTML=(data.sections.projects||[]).map(p=>`<p><strong>${p.name?.[lang]||''}:</strong> ${p.desc?.[lang]||''}</p>`).join(''); }
+        const edu=document.getElementById('eduList'); if(edu){ edu.innerHTML=(data.sections.education||[]).map(e=>{ const time=normalizedRange(e.start,e.end,lang); const gpa=e.gpa?`<span class="muted"> · GPA: ${e.gpa}</span>`:''; return `<div class="item"><h4>${e.school?.[lang]||''}</h4><div class="meta">${time}${gpa}</div><ul class="bullets"><li>${e.degree?.[lang]||''}</li></ul></div>`; }).join(''); }
+        const ach=document.getElementById('achList'); if(ach){ ach.innerHTML=(data.sections.achievements||[]).map(a=>`<li><span class="muted">${adjustFreeRange(a.time||'',lang)}</span> — ${a[lang]||''}</li>`).join(''); }
 
-        // Education
-        const edu = document.getElementById('eduList');
-        if(edu){
-          edu.innerHTML = (data.sections.education||[]).map(e => {
-            const time = normalizedRange(e.start, e.end, lang);
-            const gpa = e.gpa ? `<span class="muted"> · GPA: ${e.gpa}</span>` : '';
-            return `<div class="item"><h4>${e.school?.[lang]||''}</h4><div class="meta">${time}${gpa}</div><ul class="bullets"><li>${e.degree?.[lang]||''}</li></ul></div>`;
-          }).join('');
-        }
-
-        // Achievements
-        const ach = document.getElementById('achList');
-        if(ach){
-          ach.innerHTML = (data.sections.achievements||[]).map(a => `<li><span class="muted">${adjustFreeRange(a.time||'', lang)}</span> — ${a[lang]||''}</li>`).join('');
-        }
-
-        // Activities
-        const actPanel = document.getElementById('activitiesPanel');
-        const act = document.getElementById('actList');
+        const actPanel=document.getElementById('activitiesPanel'); const act=document.getElementById('actList');
         if(act && actPanel){
-          if(data.sections.activities && data.sections.activities.length){
-            actPanel.style.display = '';
-            act.innerHTML = data.sections.activities.map(x => {
-              const meta = [x.org?.[lang], adjustFreeRange(x.time, lang)].filter(Boolean).join(' · ');
-              const head = `<div class=\"item\"><h4>${x.name?.[lang]||''}</h4><div class=\"meta\">${meta}</div>`;
-              const list = (x.details||[]).map(d => `<li>${d[lang]||''}</li>`).join('');
-              return head + `<ul class=\"bullets\">${list}</ul></div>`;
+          if(data.sections.activities?.length){
+            actPanel.style.display='';
+            act.innerHTML=data.sections.activities.map(x=>{
+              const meta=[x.org?.[lang], adjustFreeRange(x.time, lang)].filter(Boolean).join(' · ');
+              const head=`<div class="item"><h4>${x.name?.[lang]||''}</h4><div class="meta">${meta}</div>`;
+              const list=(x.details||[]).map(d=>`<li>${d[lang]||''}</li>`).join('');
+              return head+`<ul class="bullets">${list}</ul></div>`;
             }).join('');
-          } else {
-            actPanel.style.display = 'none';
-          }
+          } else actPanel.style.display='none';
         }
 
-        // Update language button
+        // Lang toggle
         langBtn.textContent = state.lang.toUpperCase();
         document.documentElement.lang = state.lang;
       }
 
-      langBtn.addEventListener('click', () => {
+      document.getElementById('langToggle').addEventListener('click', ()=>{
         state.lang = state.lang === 'vi' ? 'en' : 'vi';
         localStorage.setItem('cv-lang', state.lang);
         render();
@@ -437,4 +426,4 @@
       loadData();
     </script>
   </body>
-  </html>
+</html>
